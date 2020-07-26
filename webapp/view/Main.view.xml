@@ -1,0 +1,67 @@
+<mvc:View controllerName="App.ListReportExample.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<f:DynamicPage id="page" title="{i18n>title}">
+					<f:header>
+						<f:DynamicPageHeader pinnable="true">
+							<fb:FilterBar reset="onReset" search="onSearch">
+								<fb:filterGroupItems>
+									<fb:FilterGroupItem groupName="__$INERNAL$" name="A" label="{i18n>Agencynum}" visibleInFilterBar="true">
+										<fb:control>
+											<Input id="iAgencynum"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INERNAL$" name="B" label="{i18n>Name}" visibleInFilterBar="true">
+										<fb:control>
+											<Input id="iName"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+									<fb:FilterGroupItem groupName="__$INERNAL$" name="C" label="{i18n>Street}" visibleInFilterBar="true">
+										<fb:control>
+											<Input id="iStreet"/>
+										</fb:control>
+									</fb:FilterGroupItem>
+								</fb:filterGroupItems>
+								
+							</fb:FilterBar>
+						</f:DynamicPageHeader>
+					</f:header>
+					<f:content>
+						<Table items="{Data>/Agency}" growing="true" alternateRowColors="true">
+							<columns>
+								<Column>
+									<Text text="{i18n>Agencynum}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Name}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>Street}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>PostBox}"/>
+								</Column>
+								<Column>
+									<Text text="{i18n>PostCode}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Navigation" press="onPressItem">
+									<cells>
+										<ObjectIdentifier text="{Data>Agencynum}"/>
+										<ObjectIdentifier text="{Data>Name}"/>
+										<ObjectIdentifier text="{Data>Street}"/>
+										<ObjectIdentifier text="{Data>Postbox}"/>
+										<ObjectIdentifier text="{Data>Postcode}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</f:content>
+				</f:DynamicPage>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

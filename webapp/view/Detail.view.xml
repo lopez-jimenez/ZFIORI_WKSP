@@ -1,0 +1,76 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="App.ListReportExample.controller.Detail"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mc="sap.suite.ui.microchart">
+	<App>
+		<pages>
+			<Page title="{i18n>titleDetail}" showNavButton="true" navButtonPress="onNavBack">
+				<content>
+					<HBox>
+						<!--<VBox>-->
+						<items class="sapMFlexItem">
+							<ObjectHeader title="{i18n>Airline}">
+								<ObjectAttribute title="" text="{Data>/selectedAgency/Agencynum} {Data>/selectedAgency/Name}"/>
+							</ObjectHeader>
+						</items>
+						<!--</VBox>-->
+						<!--<VBox>-->
+						<items>
+							<ObjectHeader title="{i18n>Address}">
+								<ObjectAttribute text="{Data>/selectedAgency/Street} {Data>/selectedAgency/PostCode} {Data>/selectedAgency/City}"/>
+							</ObjectHeader>
+						</items>
+						<items>
+							<ObjectHeader title="{i18n>Phone}">
+								<ObjectAttribute text="{Data>/selectedAgency/Telephone}" class="bold"/>
+							</ObjectHeader>
+						</items>
+						<!--</VBox>-->
+					</HBox>
+					<IconTabBar id="idIconTabBar" select="onSelectIconTabFilterSelected" expanded="true" expandable="false">
+						<items>
+							<IconTabFilter icon="sap-icon://list" text="{i18n>Bookings}" key="1">
+								<Table headerText="{i18n>Details}" items="{Data>/Bookings}" growing="true" alternateRowColors="true">
+									<columns>
+										<Column>
+											<Text text="{i18n>Carrid}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Connid}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Fldate}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Bookid}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<ObjectIdentifier text="{Data>Carrid}"/>
+												<ObjectIdentifier text="{path:'Data>Connid', formatter:'.formatConnid'}"/>
+												<ObjectIdentifier text="{path: 'Data>Fldate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short' } } "/>
+												<ObjectIdentifier text="{Data>Bookid}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://hint" text="{i18n>Details}" key="2">
+								<FlexBox width="20rem" height="180rem" justifyContent="SpaceBetween">
+									<items>
+										<mc:InteractiveDonutChart displayedSegments="2">
+											<mc:segments>
+												<mc:InteractiveDonutChartSegment label="{i18n>Cancelled}" value="{Data>/Ratio/cancelled}" displayedValue="{Data>/Ratio/Cancelled}"/>
+												<mc:InteractiveDonutChartSegment label="{i18n>Departed}" value="{Data>/Ratio/departed}" displayedValue="{Data>/Ratio/Departed}"/>
+											</mc:segments>
+										</mc:InteractiveDonutChart>
+									</items>
+								</FlexBox>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
